@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+/** @var AutomationExtension $this */
+?>
+<form action="<?php echo _url('extension', 'configure', 'e', urlencode($this->getName())); ?>" method="post">
+	<input type="hidden" name="_csrf" value="<?php echo FreshRSS_Auth::csrfToken(); ?>" />
+	<div class="form-group">
+
+		<label class="group-name" for="send_url"><?php echo _t('ext.automation.send_url'); ?></label>
+		<div class="group-controls">
+			<input type="url" id="send_url" placeholder="http://endpoint.local" name="send_url" value="<?php echo htmlspecialchars($this->getSendUrl()); ?>" data-leave-validation="1">
+		</div>
+
+		</br>
+
+		<label class="group-name" for="feed_ids"><?php echo _t('ext.automation.feed_ids'); ?></label>
+		<div class="group-controls">
+			<input type="text" id="feed_ids" name="feed_ids" pattern="^[0-9]+(,[0-9]+)*$" placeholder="1,2,3" value="<?php echo htmlspecialchars($this->getFeedIds()); ?>" data-leave-validation="1">
+		</div>
+
+		</br>
+
+		<label class="group-name" for="request_type"><?php echo _t('ext.automation.request_type'); ?></label>
+		<div class="group-controls">
+			<select id="request_type" name="request_type">
+				<option value="POST" <?php echo $this->getRequestType() === 'POST' ? 'selected' : ''; ?>>POST</option>
+				<option value="GET" <?php echo $this->getRequestType() === 'GET' ? 'selected' : ''; ?>>GET</option>
+				<!-- <option value="PUT" <?php // echo $this->getRequestType() === 'PUT' ? 'selected' : ''; ?>>PUT</option> -->
+				<!-- <option value="HEAD" <?php // echo $this->getRequestType() === 'HEAD' ? 'selected' : ''; ?>>HEAD</option> -->
+				<!-- <option value="DELETE" <?php // echo $this->getRequestType() === 'DELETE' ? 'selected' : ''; ?>>DELETE</option> -->
+			</select>
+		</div>
+
+		<template id="key-value-template">
+			<tr>
+				<td><input type="text" class="key-input" oninput="exAutomationConfigSetKeyAsValue()" pattern="[A-Za-z0-9]+" placeholder="alphanumeric only" data-leave-validation="1"></td>
+				<td><input type="text" class="value-input" name="body_fields[]" placeholder="${param}" data-leave-validation="1"></td>
+			</tr>
+		</template>
+
+		<p><?php echo _t('ext.automation.body_fields'); ?></p>
+
+		<table class="key-value-table">
+			<tr>
+				<th>Key</th>
+				<th>Value</th>
+			<tr>
+			<?php foreach($this->getBodyFields() as $key => $field): ?>
+				<tr>
+					<td><input type="text" class="key-input" oninput="exAutomationConfigSetKeyAsValue()" value="<?php echo htmlspecialchars($key) ?>" pattern="[A-Za-z0-9]+" placeholder="alphanumeric only" data-leave-validation="1"></td>
+					<td><input type="text" class="value-input" name="body_fields[<?php echo htmlspecialchars($key) ?>]" value="<?php echo htmlspecialchars($field) ?>" placeholder="${param}" data-leave-validation="1"></td>
+				</tr>
+			<?php endforeach; ?>
+		</table>
+
+		<button class="btn btn-important add-param-button" type="button" id="add_body_field" onclick="exAutomationConfigAddTr()"><?php echo _t('ext.automation.add_body_field'); ?></button>
+
+	</div>
+
+	<div class="form-group form-actions">
+		<div class="group-controls">
+			<button type="submit" class="btn btn-important"><?php echo _t('gen.action.submit'); ?></button>
+			<button type="reset" class="btn"><?php echo _t('gen.action.cancel'); ?></button>
+		</div>
+	</div>
+</form>
+
+<p>
+	<?php echo _t('ext.automation.updates'); ?>
+	<a href="https://github.com/JayRet/xExtension-Automation" target="_blank">GitHub</a>.
+</p>
+<?php Minz_View::appendScript($this->getFileUrl('config.js', 'js')); ?>

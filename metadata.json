@@ -1,0 +1,8 @@
+{
+	"name": "Automation extension",
+	"author": "Jay Ret",
+	"description": "A configurable GET/POST request is made every time there are new articles (in a certain feed)",
+	"version": 0.1,
+	"entrypoint": "Automation",
+	"type": "system"
+}
