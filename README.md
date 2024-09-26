@@ -23,4 +23,22 @@ Inserting Entry Data in Request
 You can insert entry variables in the request value (not the key) by using `${variable}`.
 
 The available variables are: id, guid, title, author, authors, content, link, date, machineReadableDate, lastSeen, dateAdded, isRead, isFavorite, isUpdated, feedId, tags and hash. Note that the content and tags are returned as strings.
-
+| param | code example | what it does |
+| --- | --- | --- |
+| id | `${id}` | this is the entry ID |
+| guid | `${guid}` | this is the entry GUID |
+| title | `${title}` | this is the entry title |
+| author | `${author}` | this is the entry author |
+| authors | `${authors}` | these are the entry authors |
+| content | `${content}` | this is the content of the entry as a string |
+| link | `${link}` | this is the entry link |
+| date | `${date}` | this is the date the entry was written |
+| machineReadableDate | `${machineReadableDate}` | this is the same as the date but in machine readable format |
+| lastSeen | `${lastSeen}` | this is the date the entry was last seen |
+| dateAdded | `${dateAdded}` | this is the date the entry was added to the feed |
+| isRead | `${isRead}` | this is the boolean value that says if the entry was read |
+| isFavorite | `${isFavorite}` | this is the boolean value that says if the entry was favorited  |
+| isUpdated | `${isUpdatedd}` | this is the boolean value that says if the entry was updated  |
+| feedId | `${feedId}` | this is the id of the feed the entry is in |
+| tags | `${tags}` | these are the entry tags as a string |
+| hash | `${hash}` | this is the entry hash |
