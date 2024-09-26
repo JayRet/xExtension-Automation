@@ -22,7 +22,7 @@ Inserting Entry Data in Request
 ===============================
 You can insert entry variables in the request value (not the key) by using `${variable}`.
 
-The available variables are: id, guid, title, author, authors, content, link, date, machineReadableDate, lastSeen, dateAdded, isRead, isFavorite, isUpdated, feedId, tags and hash. Note that the content and tags are returned as strings.
+The available variables are:
 | param | code example | what it does |
 | --- | --- | --- |
 | id | `${id}` | this is the entry ID |
