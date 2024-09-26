@@ -14,7 +14,7 @@ docker run \
 
 2. after starting docker, git pull this repo in the directory.
 
-3. enable the extension in FreshRss.
+3. enable the extension in FreshRSS.
 
 4. automate everything!!!!
 
