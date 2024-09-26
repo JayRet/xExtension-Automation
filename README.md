@@ -23,7 +23,7 @@ Inserting Entry Data in Request
 You can insert entry variables in the request value (not the key) by using `${variable}`.
 
 The available variables are:
-| param | code example | what it does |
+| param | code example | what it is |
 | --- | --- | --- |
 | id | `${id}` | this is the entry ID |
 | guid | `${guid}` | this is the entry GUID |
